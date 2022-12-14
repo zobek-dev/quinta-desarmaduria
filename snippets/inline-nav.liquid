@@ -1,0 +1,47 @@
+<nav class="hidden lg:block text-white">
+  <ul class="flex justify-start gap-4">
+    {% for link in linklists.main-menu.links %}
+      <li>
+        {% if link.links.size > 0 %}
+          <div x-data="{
+            open: false,
+            handleDropdown(){
+              this.open = !this.open;
+              this.open ? $refs.detail.setAttribute('open', true) : $refs.detail.removeAttribute('open');
+              this.open ? $refs.overlay.classList.remove('hidden') : $refs.overlay.classList.add('hidden');
+            }}"
+            @dropdown-toggle.window="handleDropdown" 
+          > 
+            <div class="hidden absolute bg-[rgba(10,10,10,.5)] top-full left-0 w-full h-[80vh]" x-ref="overlay"></div>
+            <details x-ref="detail" @mouseover="$dispatch('dropdown-toggle')" @mouseout="$dispatch('dropdown-toggle')" >
+              <summary class="flex justify-between items-center gap-x-2">
+                <a href="{{ link.url }}" class="block hover:text-[#ff4100] hover:underline hover:underline-offset-2 py-4 text-xs xl:text-sm font-semibold">{{ link.title | escape }}</a>
+                {% render 'icon-caret', class: 'w-2' %}
+              </summary>
+              <div class="absolute top-full left-0 w-full">
+                <div class="bg-white text-[#13203A]">
+                  <div class="wrapper">
+                    <ul class="grid grid-cols-4 grid-rows-5 gap-y-4 px-0 xl:px-[100px] py-8">
+                      {% for childlink in link.links %}
+                        <li class="pl-[80px] flex items-center">
+                          <a href="{{ childlink.url }}" class="hover:text-[#ff4100] hover:underline hover:underline-offset-2 uppercase text-xs xl:text-sm{% if childlink.current %} text-[#FF4100]{% endif %}" {% if forloop.last %}style="font-weight:bold"{% endif %} {% if childlink.current %} aria-current="page"{% endif %}>
+                            {{ childlink.title | escape }}
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>  
+            </details>
+          </div>
+          
+        {% else %}
+          <a href="{{ link.url }}" class="block hover:text-[#ff4100] hover:underline hover:underline-offset-2 py-4 text-xs font-semibold xl:text-sm {% if link.current %} text-[#FF4100]{% endif %}" {% if link.current %}aria-current="page"{% endif %}>
+            {{ link.title | escape }}
+          </a>  
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

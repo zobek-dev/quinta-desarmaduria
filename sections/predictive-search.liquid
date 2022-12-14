@@ -1,0 +1,41 @@
+{%- if predictive_search.performed -%}
+  <div id="predictive-search-results" class="bg-white flex flex-col text-[#13203A] rounded-sm" style="box-shadow: 0 1px 3px rgb(0, 0, 0, .35);">
+    {%- if predictive_search.resources.products.size > 0 -%}
+      <h3 id="predictive-search-products" class="px-2 py-2 text-bold border-b-[0.5px] border-[#13203A]">
+        Productos
+      </h3>
+    {%- endif -%}
+    <ul id="predictive-search-results-list" class="predictive-search__results-list" role="listbox" aria-labelledby="predictive-search-products">
+      {%- for product in predictive_search.resources.products -%}
+        <li class="border-b-[0.5px] border-[#13203A] hover:bg-gray-100" role="option">
+          <a href="{{ product.url }}" class="flex items-center px-2 py-2 gap-x-2 group" tabindex="-1">
+            
+              <img class="predictive-search__image"
+                src="{{ product.featured_media | img_url: '150x' }}"
+                alt="{{ product.featured_media.alt }}"
+                width="50"
+                height="{{ 50 | divided_by: product.featured_media.preview_image.aspect_ratio }}"
+                class="object-cover object-center aspect-square"
+                loading="lazy"
+              >
+            <div class="predictive-search__item-content">
+              {%- if settings.predictive_search_show_vendor -%}
+                <span class="sr-only">Marca</span>
+                <div class="text-sm">{{ product.vendor }}</div>
+              {%- endif -%}
+              <span class="text-sm">{{ product.title }}</span>
+              {%- if settings.predictive_search_show_price -%}
+                {% comment %}Render price{% endcomment %}
+              {%- endif -%}
+            </div>
+          </a>
+        </li>
+      {%- endfor -%}
+      <li class="flex flex-start hover:bg-gray-100" role="option">
+        <button class="w-full py-2 px-2 text-left text-sm" tabindex="-1">
+          Buscar para “{{ predictive_search.terms }}”
+        </button>
+      </li>
+    </ul>
+  </div>
+{%- endif -%}

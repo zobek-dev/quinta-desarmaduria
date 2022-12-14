@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './components/base.css';
+@import './components/drawer-menu.css';
+@import './components/search-modal.css';
+@import './components/drawer-cart.css';

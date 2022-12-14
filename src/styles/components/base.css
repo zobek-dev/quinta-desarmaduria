@@ -1,0 +1,33 @@
+/* Resets */
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Generals */
+
+.wrapper{
+  @apply max-w-[1440px] mx-auto px-4 md:px-8 w-full;
+}
+
+.btn-primary{
+  @apply text-white bg-[#FF4100] font-bold tracking-[1px] italic uppercase py-2 px-4 rounded-[20px] block w-max
+}
+.btn-secondary{
+  @apply text-white bg-[#00C13E] font-bold tracking-[1px] italic uppercase py-2 px-4 rounded-[20px] block w-max
+}
+
+.btn-primary-cart[type="submit"],
+.btn-primary-cart[type="button"]
+{
+  @apply w-full text-white text-center font-bold tracking-[1px]  italic uppercase py-2 px-4;
+  background-color: #FF4100 !important;
+}
+
+.btn-secondary-cart{
+  @apply w-full text-white bg-[#13203A] text-center font-bold tracking-[1px]  italic uppercase py-2 px-4;
+}
+
+
+.disclosure[open] summary > svg{
+ @apply rotate-180 
+}

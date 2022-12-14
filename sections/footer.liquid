@@ -1,0 +1,86 @@
+<footer class="bg-white border-t text-[#13203A] border-[#13203A]">
+  <div class="wrapper">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 pt-12 pb-4">
+      <div class="col-span-1">
+        {% render 'logo-vertical', class: 'w-[119px] h-[119px] mb-4' %}
+        <h3 class="font-bold mb-2">Sigue nuestras redes sociales</h3>
+        {% render 'social-list', bg_color: '#fff' %}
+      </div>
+      <div class="col-span-1">
+        <h3 class="font-bold my-2 uppercase">Encuentrános</h3>
+        <ul class="block mb-4"> 
+          <li>
+            <a href="#" class="text-sm uppercase">Ruta F190, Limache Valparaíso</a>
+          </li>
+          <li>
+            <a href="#" class="text-sm uppercase">Pasaje F.190. Con Cón, Valparaíso</a>
+          </li>
+          <li>
+            <a href="#" class="text-sm uppercase">Pasaje F.190. Con Cón, Valparaíso</a>
+          </li>
+        </ul>
+        <h3 class="font-bold my-2 uppercase">Contáctanos</h3>
+        <ul class="block mb-4">
+          <li>
+            <a href="#" class="btn-secondary mb-2">
+              +569 5555 6666
+            </a>
+          </li>
+          <li>
+            <a href="#" class="btn-secondary mb-2">
+              +569 5555 6666
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-span-1">
+        <h3 class="font-bold my-2 uppercase">Encuentrános</h3>
+        <ul class="block mb-4">
+          <li>
+            <a href="#" class="text-sm">Política de privacidad</a>
+          </li>
+          <li>
+            <a href="#" class="text-sm">Política de Cookies</a>
+          </li>
+        </ul>
+        <h3 class="font-bold my-2 uppercase">Información</h3>
+        <ul class="block mb-4">
+          <li>
+            <a href="#" class="text-sm">Contacto</a>
+          </li>
+          <li>
+            <a href="#" class="text-sm">Sobre Quinta</a>
+          </li>
+          <li>
+            <a href="#" class="text-sm">Preguntas Frecuentes</a>
+          </li>
+          <li>
+            <a href="#" class="text-sm">Sucursales</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-span-1">
+        <h3 class="font-bold my-2 uppercase">Encuentrános</h3>
+        <ul class="block mb-4">
+          <li>
+            <a href="#" class="text-sm">Transferencias Bancarias</a>
+          </li>
+          <li>
+            {% render 'icon-transbank', class: 'my-2' %}
+          </li>
+        </ul>
+      </div>  
+    </div>
+  </div>
+  <div class="bg-[#13203A] text-white py-4">
+    <div class="wrapper">
+      <span class="block text-center uppercase text-sm leading-none">&copy; Quinta desarmaduría | {{ 'now' | date: '%Y' }} | desarrollado por <a href="https://vanilla.cl" class="underline underline-offset-2">vanilla</a> & <a href="https://mediahuella.com" class="underline underline-offset-2">mediahuella</a> </span>
+    </div>
+  </div>
+</footer>
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": []
+  }
+{% endschema %}

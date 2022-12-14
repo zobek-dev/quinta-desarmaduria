@@ -1,0 +1,31 @@
+<div class="bg-[#FF4100] text-white py-2">
+  <div class="wrapper">
+    <div class="grid grid-cols-1 md:grid-cols-5">
+      <div class="hidden lg:block lg:col-span-1"></div> 
+      <a href="{{ section.settings.link }}" class="uppercase md:col-span-4 lg:col-span-3 text-center font-poppins font-bold text-[7px] sm:text-xs lg:text-sm">
+        {{ section.settings.text | escape}}
+      </a>
+      <div class="hidden md:flex md:col-span-1 md:justify-end">
+        {% render 'social-list', bg_color: '#FF4100' %}
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Barra de anuncio",
+  "settings": [
+    {
+      "type": "url",
+      "id": "link",
+      "label": "link para la barra de anuncio"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texto para el link",
+      "default": "Insertar un texto para la barra de inicio"
+    }
+  ]  
+}
+{% endschema %}

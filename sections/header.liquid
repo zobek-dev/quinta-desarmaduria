@@ -1,0 +1,131 @@
+<header x-data class="bg-[#13203A] w-full py-4 xl:pt-2 lg:pb-0 z-[9] relative">
+  <div class="wrapper">
+    <div class="flex justify-between items-center xl:items-end">
+      <div class="block lg:hidden" x-data="{
+        drawer: document.querySelector('.drawer-menu'),
+        toggleMenu(event){
+          this.drawer.classList.toggle('active');
+        }
+      }"
+      @toggle-menu.window="toggleMenu"
+      @keyup.escape="$dispatch('toggle-menu')"
+      >
+        <button class="text-white" @click="$dispatch('toggle-menu')">
+          {% render 'icon-burger' %}
+        </button>
+          {% render 'drawer-menu' %}
+      </div>
+      <a href="{{ routes.root_url }}" role="link" class="block lg:pb-2">
+        {% render 'logo', class: 'w-[120px] h-[41px] lg:w-[236px] lg:h-[80px] xl:w-[337px] xl:h-[114px]' %}
+      </a>
+      <div class="flex flex-col gap-y-2 xl:gap-y-4 justify-center xl:justify-end">
+        <div class="flex gap-x-1 lg:gap-x-4 items-center justify-end">
+          <predictive-search class="hidden lg:block">
+            <form action="{{ routes.search_url }}" method="get" role="search" class="relative">
+              <div class="group border-[2px] bg-[#d9d9d9] bg-opacity-[17%] border-white flex items-center focus-within:border-[#FF4100]">
+                <input
+                  id="Search"
+                  type="search"
+                  name="q"
+                  value="{{ search.terms | escape }}"
+                  role="combobox"
+                  aria-expanded="false"
+                  aria-owns="predictive-search-results-list"
+                  aria-controls="predictive-search-results-list"
+                  aria-haspopup="listbox"
+                  aria-autocomplete="list"
+                  autocorrect="off"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  spellcheck="false" 
+                  class="bg-transparent px-2 py-1 placeholder:text-[15px] placeholder:text-white outline-none text-white text-sm"
+                  placeholder="{{ section.settings.placeholder_text | escape }}"
+                >
+                <input name="options[prefix]" type="hidden" value="last">
+                <input type="hidden" name="type" value="product">
+                <button type="submit" class="pr-2 text-white">
+                  {% render 'icon-search', class: 'w-[17px] h-[17px] sm:w-[22.19px] sm:h-[22.19px]' %}
+                </button>
+              </div>
+              <div id="predictive-search" class="absolute top-full left-0 w-full" tabindex="-1"></div>
+            </form>
+          </predictive-search>
+          <div 
+            x-data="{
+              modalSearch: document.querySelector('.modal-search'),
+              toggleSearch(){
+                this.modalSearch.classList.toggle('active');
+              }
+            }"
+            @toggle-search-modal.window="toggleSearch"
+            @keyup.escape="$dispatch('toggle-search-modal')" 
+            class="block lg:hidden"
+          >
+            <a href="{{ routes.search_url }}" @click.prevent="$dispatch('toggle-search-modal')" class="text-white">
+              {% render 'icon-search', class: 'w-[17px] h-[17px] sm:w-[22.19px] sm:h-[22.19px]' %}
+            </a>
+            {% render 'search-modal' %}
+          </div>
+          <!--Acá va la interacción del carro-->
+          <div>
+            <a href="{{ section.settings.link_cotizar }}" class="hidden lg:block btn-primary text-xs lg:text-[15px]">
+              Cotiza Aquí
+            </a>
+          </div>
+          <div x-data="{
+            open: false,
+            drawerCart: document.querySelector('.drawer-cart'),
+            form: $refs.cart_form,
+            loading: false,
+            toggleCart(){
+              this.open = !open;
+              this.drawerCart.classList.toggle('active')
+            },
+            updateCart(event){
+              event.preventDefault();
+              fetch('/?view=cart')
+              .then(response => response.text())
+              .then(data => {
+                $refs.cart_content.innerHTML = data;
+              })
+              .catch(error => console.error(error))
+            }
+          }"
+          @toggle-cart.window="toggleCart"
+          @update-cart.window="updateCart"
+          @keyup.escape="$dispatch('toggle-cart')"
+          >
+            <a href="{{ routes.cart_url }}" aria-label="Abrir el carro" class="relative" @click.prevent="$dispatch('toggle-cart')">
+              {% render 'icon-cart', class: 'w-[15px] h-[17.5px] lg:w-[20px] lg:h-[23px]' %}
+              {% if cart != empty %}
+                <span aria-hidden="true" class="text-white absolute -top-2 -right-2 bg-[#FF4100] text-[7px] w-[14px] h-[14px] rounded-[50%] flex justify-center items-center font-bold">{{ cart.item_count }}</span>  
+              {% endif %}
+            </a>
+            {% render 'drawer-cart' %}
+          </div>
+        </div>
+        {% render 'inline-nav' %}
+      </div>
+    </div>
+  </div>
+</header>
+
+<!--width="120" height="41"-->
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "Texto para el placeholder", 
+      "default": "¿Qué buscas?" 
+    },
+    {
+      "type": "url",
+      "id": "link_cotizar",
+      "label": "link para cotizar" 
+    }
+  ]  
+}
+{% endschema %}

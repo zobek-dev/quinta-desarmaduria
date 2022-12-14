@@ -1,0 +1,5 @@
+{% for product in collection.products %}
+  <div>
+    <a href="{{ product.url }}">{{ product.title | escape }}</a>
+  </div>
+{% endfor %}
