@@ -1,0 +1,63 @@
+<icons-carousel>
+  <div class="wrapper">
+    <div class="garantia-carousel garantia-carousel-{{ section.id }} pt-4 pb-4 relative overflow-hidden">
+      <ul class="swiper-wrapper">
+        <li class="swiper-slide flex gap-x-4 items-center justify-center">
+          {% render 'icon-garantia' %}
+          <span class="text-base lg:text-[18px] font-bold leading-none uppercase">
+            Garantizamos repuestos originales
+          </span>
+        </li>
+        <li class="swiper-slide flex gap-x-4 items-center justify-center">
+          {% render 'icon-relacion' %}
+          <span class="text-base lg:text-[18px] font-bold leading-none uppercase">
+            Mejor relación Precio/Calidad
+          </span>
+        </li>
+        <li class="swiper-slide flex gap-x-4 items-center justify-center">
+          {% render 'icon-hectareas' %}
+          <span class="text-base lg:text-[18px] font-bold leading-none uppercase">
+            2 Hectáreas dedicadas al desarme
+          </span>
+        </li>
+        <li class="swiper-slide flex gap-x-4 items-center justify-center">
+          {% render 'icon-despacho' %}
+          <span class="text-base lg:text-[18px] font-bold leading-none uppercase">
+            Despachos a todo Chile
+          </span>
+        </li>
+      </ul>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</icons-carousel>
+
+<style>
+  .garantia-carousel-{{ section.id }} .swiper-pagination {
+    bottom: 0 !important;
+  }
+
+  .garantia-carousel-{{ section.id }} .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+  }
+
+  .garantia-carousel-{{ section.id }} .swiper-pagination-bullet-active {
+    background-color: #13203A;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Iconos Garantías",
+    "tag": "section",
+    "class": "section-block",
+    "limit": 1,
+    "presets": [
+      {
+        "name": "Iconos Garantías",
+        "category": "slider"
+      }
+    ]
+  }
+{% endschema %}

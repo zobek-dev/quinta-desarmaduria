@@ -10,10 +10,14 @@ summary::-webkit-details-marker {
 }
 
 .btn-primary{
-  @apply text-white bg-[#FF4100] font-bold tracking-[1px] italic uppercase py-2 px-4 rounded-[20px] block w-max
+  @apply text-white bg-[#FF4100] font-bold italic uppercase py-2 px-4 rounded-[20px] block w-max
 }
 .btn-secondary{
-  @apply text-white bg-[#00C13E] font-bold tracking-[1px] italic uppercase py-2 px-4 rounded-[20px] block w-max
+  @apply text-white bg-[#00C13E] font-bold italic uppercase py-2 px-4 rounded-[20px] block w-max
+}
+
+.btn-transparent{
+  @apply text-white bg-transparent font-bold italic uppercase py-2 px-4 rounded-[20px] block w-max border border-white
 }
 
 .btn-primary-cart[type="submit"],
@@ -30,4 +34,8 @@ summary::-webkit-details-marker {
 
 .disclosure[open] summary > svg{
  @apply rotate-180 
+}
+
+.section-block{
+  @apply py-1 my-2 lg:py-2 lg:my-4
 }
