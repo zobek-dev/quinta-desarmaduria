@@ -1,0 +1,58 @@
+<div class="wrapper my-8">
+  <h2 class="uppercase font-black leading-none my-4 lg:text-[30px] text-[20px] text-center">
+    Últimos vehículos
+    <strong class="text-[#FF4100]">en desarme</strong>
+  </h2>
+  <p class="text-[13px] lg:text-2xl text-center leading-[1.1] mb-4">
+    {{ section.settings.bajada | escape }}
+  </p>
+  <desarme-carousel>
+    <div class="desarme-carousel desarme-carousel-{{ section.id }} overflow-hidden relative pt-4 pb-8 lg:py-8">
+      <ul class="swiper-wrapper">
+        {% for product in collections[section.settings.coll_handler].products %}
+          {% render 'desarme-card', class: 'swiper-slide', product: product %}
+        {% endfor %}
+      </ul>
+      <div class="swiper-button-prev hidden lg:block"></div>
+      <div class="swiper-button-next hidden lg:block"></div>
+    </div>
+  </desarme-carousel>
+  <a href="{{ collections[section.settings.coll_handler].url }}" class="btn-primary mx-auto">
+    Ver Todo Desarme
+  </a>      
+</div>
+
+<style>
+  .desarme-carousel-{{ section.id }} .swiper-button-prev,
+  .desarme-carousel-{{ section.id }} .swiper-button-next
+  {
+    color: #13203A;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "En Desarme - Home",
+    "tag": "section",
+    "class": "section-block",
+    "limit": 1,
+    "settings": [
+      {
+        "type": "collection",
+        "id": "coll_handler",
+        "label": "Selecciona la colección a mostrar"
+      }, {
+        "type": "text",
+        "id": "bajada",
+        "label": "Ingresa el texto para la bajada",
+        "default": "Revisa nuestros últimos vehículos recibidos y cotiza con nosotros."
+      }
+    ],
+    "presets": [
+      {
+        "name": "En Desarme - Home ",
+        "category": "slide"
+      }
+    ]
+  }
+{% endschema %}

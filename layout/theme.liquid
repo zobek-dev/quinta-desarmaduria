@@ -53,7 +53,9 @@
       {{ 'main.css' | asset_url | stylesheet_tag }}
     </noscript>
 
-    <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" href="{{ 'main.css' | asset_url }}" >
+    {{ 'main.css' | asset_url | stylesheet_tag }}
+
+    {% comment %} <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" href="{{ 'main.css' | asset_url }}" > {% endcomment %}
 
     <!--END OF MAIN CSS -->
 

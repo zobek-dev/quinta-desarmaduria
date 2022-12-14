@@ -1,0 +1,24 @@
+{% comment %}
+  @product: receive the product object.
+  @class: receive an important class of the card.
+{% endcomment %}
+
+<li class="group {{ class }}">
+  <a href="{{ product.url }}">
+    <img
+      src="{{ product.featured_image.src | img_url: '500x' }}"
+      alt="{{ product.featured_image }}"
+      width="500"
+      height="{{ 500 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+      loading="lazy"
+      class="w-full aspect-square object-cover">
+      
+
+    <h3 class="font-black text-[#FF4100] text-[20px] lg:text-[25px] my-4 uppercase text-center">{{ product.title | escape }}</h3>
+
+    <div role="button" class="underline uppercase text-[13px] lg:text-xl font-bold flex gap-x-1 mx-auto w-max">
+      <span class="underline underline-offset-2">Ver Más</span>
+      {% render 'icon-arrows', class: 'w-[14px] h-[22px] lg:w-[24px] lg:h-[37px]' %}
+    </div>
+  </a>
+</li>

@@ -37,5 +37,5 @@ summary::-webkit-details-marker {
 }
 
 .section-block{
-  @apply py-1 my-2 lg:py-2 lg:my-4
+  @apply block py-1 my-2 lg:py-2 lg:my-4
 }
