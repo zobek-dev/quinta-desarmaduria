@@ -1,11 +1,76 @@
 {
   "sections": {
-    "main": {
-      "type": "main-index",
+    "5867daac-95f4-443d-8a4b-ff195a445bbb": {
+      "type": "hero",
+      "settings": {
+        "link_text": "Buscar Repuestos",
+        "link": "",
+        "link_cotizar": ""
+      }
+    },
+    "06946d40-634f-465f-87f5-0881943ce10a": {
+      "type": "iconos",
       "settings": {}
+    },
+    "7a819e46-fdad-40cf-be87-bd647e7f672f": {
+      "type": "desarme-home",
+      "settings": {
+        "coll_handler": "en-desarme",
+        "bajada": "Revisa nuestros últimos vehículos recibidos y cotiza con nosotros."
+      }
+    },
+    "b521d6b5-401f-43b8-988b-af8b14011cff": {
+      "type": "featured-categories",
+      "blocks": {
+        "a6fe6ddc-5232-4e9f-9b6b-a2df2417d7bb": {
+          "type": "category",
+          "settings": {
+            "coll": "bombas"
+          }
+        },
+        "6b7063e1-2e99-4c39-acb1-54ed71750dd4": {
+          "type": "category",
+          "settings": {
+            "coll": "carrocerias"
+          }
+        },
+        "69e8bef3-8902-4a48-9c4c-75366ebb2046": {
+          "type": "category",
+          "settings": {
+            "coll": "llantas"
+          }
+        },
+        "40017874-0115-4a2d-907a-891456fe2a1f": {
+          "type": "category",
+          "settings": {
+            "coll": "motores"
+          }
+        },
+        "b3a7b51f-9c4d-47d1-958f-3f5974493126": {
+          "type": "category",
+          "settings": {
+            "coll": "frenos"
+          }
+        }
+      },
+      "block_order": [
+        "a6fe6ddc-5232-4e9f-9b6b-a2df2417d7bb",
+        "6b7063e1-2e99-4c39-acb1-54ed71750dd4",
+        "69e8bef3-8902-4a48-9c4c-75366ebb2046",
+        "40017874-0115-4a2d-907a-891456fe2a1f",
+        "b3a7b51f-9c4d-47d1-958f-3f5974493126"
+      ],
+      "settings": {
+        "bajada": "Contamos con miles de repuestos y accesorios de todas las marcas. ¿Qué estas buscando?",
+        "link_text": "Ver Repuestos",
+        "link": ""
+      }
     }
   },
   "order": [
-    "main"
+    "5867daac-95f4-443d-8a4b-ff195a445bbb",
+    "06946d40-634f-465f-87f5-0881943ce10a",
+    "7a819e46-fdad-40cf-be87-bd647e7f672f",
+    "b521d6b5-401f-43b8-988b-af8b14011cff"
   ]
 }

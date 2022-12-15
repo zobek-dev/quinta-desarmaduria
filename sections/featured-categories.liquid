@@ -14,7 +14,7 @@
     </div>
     <div class="col-span-2">
       <categorias-carousel>
-        <div class="categorias-carrousel categorias-carrousel-{{ section.id }} wrapper overflow-hidden relative">
+        <div class="categorias-carrousel categorias-carrousel-{{ section.id }} overflow-hidden relative">
         <ul class="swiper-wrapper">
         {% for block in section.blocks %}
           {% render 'category-card', collection: collections[block.settings.coll], class: 'swiper-slide' %}

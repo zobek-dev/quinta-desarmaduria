@@ -39,3 +39,20 @@ summary::-webkit-details-marker {
 .section-block{
   @apply block py-1 my-2 lg:py-2 lg:my-4
 }
+
+
+.header-transparent{
+  @apply absolute top-[26.5px] lg:top-[36px] left-0 w-full z-[999] bg-transparent transition-all duration-300 ease-in-out;
+}
+
+.header-fixed{
+  @apply fixed top-0 left-0 w-full z-[999] bg-[#13203A] transition-all duration-300 ease-in-out;
+}
+
+.header{
+  @apply relative w-full z-[999] bg-[#13203A] transition-all duration-300 ease-in-out;
+}
+
+.category{
+  @apply py-8 my-4;
+}
