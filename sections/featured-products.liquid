@@ -1,0 +1,53 @@
+<div class="wrapper">
+  <h2 class="uppercase font-black leading-none mt-4 mb-2 lg:mb-4 lg:text-[30px] text-[20px] text-center">
+    <strong class="text-[#FF4100]">Últimos Repuestos</strong>
+    y Accesorios
+  </h2>
+  <p class="text-[13px] lg:text-2xl text-center leading-[1.1]">
+    {{ section.settings.bajada | escape }}
+  </p>
+  <featured-carousel>
+    <div class="featured-carousel featured-carousel-{{ section.id }} overflow-hidden relative py-6">
+      <ul class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% render 'product-card', product: all_products[block.settings.product], class: 'swiper-slide' %}
+        {% endfor %}
+      </ul>
+    </div>
+  </featured-carousel>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Featured-Products",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "bajada",
+        "default": "Revisa nuestra tienda online con los repuestos en stock para tu compra inmediata.",
+        "label": "Ingresa el texto para la bajada."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Elige un producto"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured-Products",
+        "category": "slide"
+      }
+    ]
+  }
+{% endschema %}
