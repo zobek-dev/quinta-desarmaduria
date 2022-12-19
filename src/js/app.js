@@ -142,11 +142,15 @@ class FeaturedProductsCarousel extends HTMLElement{
 
     if(this.carousel){
       this.swiper = new Swiper(this.carousel, {
-        slidesPerView:1.3,
+        slidesPerView:1.2,
         spaceBetween: 8,
         breakpoints: {
-          500: {
+          450: {
             slidesPerView:2.2,
+            spaceBetween: 8,
+          },
+          600:{
+            slidesPerView:3.2,
             spaceBetween: 8,
           },
           1024: {
@@ -160,6 +164,24 @@ class FeaturedProductsCarousel extends HTMLElement{
 }
 
 customElements.define('featured-carousel', FeaturedProductsCarousel);
+
+class MarcasCarousel extends HTMLElement{
+  constructor(){
+    super();
+
+    this.carousel = this.querySelector('.marcas-carousel');
+
+    if(this.carousel){
+      this.swiper = new Swiper(this.carousel, {
+        slidesPerView: 4,
+        spaceBetween: 16
+      })
+    }
+  }
+}
+
+customElements.define('marcas-carousel', MarcasCarousel);
+
 
 // Auxiliar events
 

@@ -14,8 +14,8 @@
       class="w-full aspect-square object-cover">
       
 
-    <h3 class="font-black text-[#FF4100] text-[20px] lg:text-[25px] my-4 uppercase text-center">{{ product.title | escape }}</h3>
-
+    <h3 class="font-black text-[#FF4100] text-[20px] lg:text-[25px] my-2 uppercase text-center">{{ product.title | escape }}</h3>
+    <p class="text-[13px] lg:text-[15px] text-semibold leading-none mb-2 line-clamp-2 text-center">{{ product.metafields.custom.caracter_sticas.value | escape }}</p>
     <div role="button" class="underline uppercase text-[13px] lg:text-xl font-bold flex gap-x-1 mx-auto w-max">
       <span class="underline underline-offset-2">Ver Más</span>
       {% render 'icon-arrows', class: 'w-[14px] h-[22px] lg:w-[24px] lg:h-[37px]' %}

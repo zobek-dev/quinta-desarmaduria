@@ -1,0 +1,50 @@
+<div class="bg-center bg-cover bg-no-repeat dudas-bg relative h-[288px] z-[1]">
+  <div class="bg-[#13203A] bg-opacity-80 absolute top-0 left-0 right-0 bottom-0">
+    <div class="wrapper z-[4] block h-full">
+      <div class="flex flex-col lg:flex-row w-full h-full justify-center lg:items-center lg:justify-between">
+        <div class="max-w-[250px] sm:max-w-[350px] md:max-w-[650px] lg:max-w-[788px]">
+          <h2 class="text-white font-black leading-none uppercase text-[20px] lg:text-[36px] mb-4">
+            ¿Aún tienes dudas de como encontrar y adquirir
+            <strong class="text-[#FF4100]">tu respuesto o accesorio?</strong>
+          </h2>
+          <p class="text-white text-[13px] md:text-base lg:text-[24px] mb-4">
+            Lo que no tenemos en stock te lo conseguimos.
+          </p>
+        </div>
+        <a href="{{ section.settings.link }}" class="btn-primary text-xs sm:text-md lg:text-base texth-max">
+          Te ayudamos
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .dudas-bg {
+    background-image: url('{{ section.settings.image | img_url: 'master' }}');
+  }
+</style>
+{% schema %}
+  {
+    "name": "Dudas",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Ingresa el link del boton"
+      }, {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Imagen para el fondo"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Dudas",
+        "category": "call to action"
+      }
+    ]
+  }
+{% endschema %}
