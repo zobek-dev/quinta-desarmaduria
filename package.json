@@ -19,6 +19,7 @@
     "@tailwindcss/typography": "^0.5.8",
     "alpinejs": "^3.10.5",
     "archiver": "^5.3.1",
+    "fslightbox": "^3.3.1",
     "laravel-mix": "^6.0.49",
     "postcss-custom-properties": "^13.0.0",
     "swiper": "^8.4.5",

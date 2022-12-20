@@ -18,7 +18,7 @@
             <ul class="swiper-wrapper" role="list">
               {% for image in product.images %}
                 <li class="swiper-slide border border-[#13203A]">
-                  <img
+                    <img
                     src="{{ image.src | img_url: '200x' }}"
                     alt="{{ image.alt | escape }}"
                     width="200"
@@ -33,13 +33,15 @@
             <ul class="swiper-wrapper" role="list">
               {% for image in product.images %}
                 <li class="swiper-slide">
-                  <img
+                  <a href="{{ image.src | img_url: '1500x' }}" class="fslightbox" data-fslightbox="group-desktop-product">
+                    <img
                     src="{{ image.src | img_url: '1200x' }}"
                     alt="{{ image.alt | escape }}"
                     width="1200"
                     height="{{ 1200 | divided_by: image.aspect_ratio | ceil }}"
                     loding="lazy"
                     class="aspect-square object-contain object-center">
+                  </a>
                 </li>
               {% endfor %}
             </ul>
@@ -51,13 +53,16 @@
           <ul class="swiper-wrapper">
             {% for image in product.images %}
               <li class="swiper-slide">
-                <img
+                <a href="{{ image.src | img_url: '1200x' }}" class="fslightbox" data-fslightbox="group-mobile-product">
+                  <img
                   src="{{ image.src | img_url: '1100x' }}"
                   alt="{{ image.alt | escape }}"
                   width="1100"
                   height="{{ 1100 | divided_by: image.aspect_ratio | ceil }}"
                   loding="lazy"
-                  class="aspect-square object-contain object-center">
+                  class="aspect-square object-contain object-center"> 
+                </a>
+                
               </li>
             {% endfor %}
           </ul>

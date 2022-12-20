@@ -1,10 +1,18 @@
 import Alpine from 'alpinejs';
 import Swiper, {Navigation, Pagination, Controller} from 'swiper';
+import fslightbox from 'fslightbox';
 
 window.Alpine = Alpine;
 Alpine.start();
 
 // Swipers HTMLNative components
+window.addEventListener('DOMContentLoaded', () => {
+  if(document.querySelector('.fslightbox')){
+    fslightbox.initialize({
+      selector: '.fslightbox'
+    })
+  }
+})
 
 class IconsCarousel extends HTMLElement{
   constructor(){
