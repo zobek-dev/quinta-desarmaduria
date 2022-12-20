@@ -134,8 +134,78 @@
         "9a1e7050-1b08-4216-98d7-5f9f52db975a"
       ],
       "settings": {
-        "bajada": "Revisa nuestra tienda online con los repuestos en stock para tu compra inmediata."
+        "bajada": "Revisa nuestra tienda online con los repuestos en stock para tu compra inmediata.",
+        "link": ""
       }
+    },
+    "293ae07b-26bd-4b9a-9b60-664a54d46b84": {
+      "type": "dudas",
+      "settings": {
+        "link": "",
+        "image": "shopify:\/\/shop_images\/Product_Lockup-2048x979_1.png"
+      }
+    },
+    "a442deda-7960-4bf0-b671-043108fb35d7": {
+      "type": "marcas",
+      "blocks": {
+        "37252e7b-c4cf-4ac8-96bb-4365d78aa6ba": {
+          "type": "marca",
+          "settings": {
+            "icon": "{% render 'icon-toyota' %}",
+            "link": "",
+            "marca": "Toyota"
+          }
+        },
+        "1962a14b-dba6-4f76-b521-71b07bec7d23": {
+          "type": "marca",
+          "settings": {
+            "icon": "{% render 'icon-hyundai' %}",
+            "link": "",
+            "marca": "Hyundai"
+          }
+        },
+        "73a2ec0e-077e-49d7-ba16-e66cdbf0d988": {
+          "type": "marca",
+          "settings": {
+            "icon": "{% render 'icon-nissan' %}",
+            "link": "",
+            "marca": "Nissan"
+          }
+        },
+        "79feef75-6136-43eb-8277-9fffa533effa": {
+          "type": "marca",
+          "settings": {
+            "icon": "{% render 'icon-suzuki' %}",
+            "link": "",
+            "marca": "Suzuki"
+          }
+        },
+        "5b66d2b1-4bd3-4978-b7d9-c88af1448e12": {
+          "type": "marca",
+          "settings": {
+            "icon": "{% render 'icon-renault' %}",
+            "link": "",
+            "marca": "Renault"
+          }
+        },
+        "6397c2b0-dd64-4311-8107-4fccabfe7c47": {
+          "type": "marca",
+          "settings": {
+            "icon": "{% render 'icon-jeep' %}",
+            "link": "",
+            "marca": "Jeep"
+          }
+        }
+      },
+      "block_order": [
+        "37252e7b-c4cf-4ac8-96bb-4365d78aa6ba",
+        "1962a14b-dba6-4f76-b521-71b07bec7d23",
+        "73a2ec0e-077e-49d7-ba16-e66cdbf0d988",
+        "79feef75-6136-43eb-8277-9fffa533effa",
+        "5b66d2b1-4bd3-4978-b7d9-c88af1448e12",
+        "6397c2b0-dd64-4311-8107-4fccabfe7c47"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -144,6 +214,8 @@
     "7a819e46-fdad-40cf-be87-bd647e7f672f",
     "b521d6b5-401f-43b8-988b-af8b14011cff",
     "28777e54-f562-44db-8a55-509f8715a164",
-    "67c65530-5571-4c54-9952-a4b376d8a157"
+    "67c65530-5571-4c54-9952-a4b376d8a157",
+    "293ae07b-26bd-4b9a-9b60-664a54d46b84",
+    "a442deda-7960-4bf0-b671-043108fb35d7"
   ]
 }

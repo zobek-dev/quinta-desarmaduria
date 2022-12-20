@@ -6,15 +6,17 @@
 <div>
   <div class="wrapper">
     <marcas-carousel>
-      <div class="marcas-carousel marcas-carousel-{{ section.id }} overflow-hidden relative my-8">
+      <div class="marcas-carousel marcas-carousel-{{ section.id }} overflow-hidden relative py-8 mt-8">
         <ul class="swiper-wrapper flex items-center">
           {% for block in section.blocks %}
-            <li class="swiper-slide flex items-center justify-center" aria-label="{{ block.settings.marca | escape }}">
-              <span class="sr-only">{{ block.settings.marca | escape }}</span>
+            <li class="swiper-slide flex justify-center" aria-label="{{ block.settings.marca | escape }}">
               {{ block.settings.icon }}
             </li>
           {% endfor %}
         </ul>
+        <span class="block mx-auto w-max font-extrabold text-base sm:text-xl lg:text-[30px] mt-4" style="color: rgba(255, 65, 0, 0.41)">
+          y más...
+        </span>
       </div>
     </marcas-carousel>
   </div>
@@ -25,7 +27,8 @@
     position: absolute;
     content: '';
     top: 100%;
-    left: calc(50% - 10px);
+    left: 50%;
+    transform: translateX(-50%);
     border-top: 20px solid #FF4100;
     border-bottom: 20px solid transparent;
     border-left: 20px solid transparent;

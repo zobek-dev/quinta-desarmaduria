@@ -57,3 +57,16 @@ summary::-webkit-details-marker {
   @apply py-8 my-4;
 }
 
+.thumbnail-grid{
+  grid-template-columns: 110px 1fr 1fr 1fr 1fr;
+}
+
+@media(min-width: 1536px){
+  .thumbnail-grid{
+    grid-template-columns: 130px 1fr 1fr 1fr 1fr;
+  }
+}
+
+.btn-primary[type='button']{
+  background-color: #FF4100;
+}

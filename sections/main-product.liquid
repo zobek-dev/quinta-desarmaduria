@@ -1,7 +1,168 @@
-<form action="{{ routes.cart_add_url }}" method="POST" id="Product-Form-{{ product.selected_or_first_available_variant.id }}">
-  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-  <input type="hidden" name="quantity" value="1">
-  <button type="submit" name="add">
-    Agregar al carrito
-  </button>
-</form>
+{%- liquid
+  assign on_sale = false
+  assign month = 30 | times: 24 | times: 60 | times: 60
+  assign date_created = product.created_at | date: "%Y-%m-%d"
+  assign dead_line = "now" | date: "%s" | minus: month | date: "%Y-%m-%d"
+  if product.compare_at_price_max > product.price
+    assign on_sale = true
+  endif
+-%}
+
+<div class="wrapper"> 
+  {% render 'breadcrumb' %}
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+    <div class="col-span-1 lg:col-span-3 lg:sticky lg:top-20 lg:self-start lg:pt-4">
+      <thumbails-gallery class="hidden lg:block">
+        <div class="h-[560px] 2xl:h-[690px]  grid gap-4 thumbnail-grid">
+          <div class="block col-span-1 thumbnail thumbnail-{{ section.id }} overflow-hidden relative">
+            <ul class="swiper-wrapper" role="list">
+              {% for image in product.images %}
+                <li class="swiper-slide border border-[#13203A]">
+                  <img
+                    src="{{ image.src | img_url: '200x' }}"
+                    alt="{{ image.alt | escape }}"
+                    width="200"
+                    height="{{ 100 | divided_by: image.aspect_ratio | ceil }}"
+                    loding="lazy"
+                    class="aspect-square object-cover object-center w-full">
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="block col-span-4 gallery gallery-{{ section.id }} overflow-hidden relative" data-count="{{ product.images.size }}">
+            <ul class="swiper-wrapper" role="list">
+              {% for image in product.images %}
+                <li class="swiper-slide">
+                  <img
+                    src="{{ image.src | img_url: '1200x' }}"
+                    alt="{{ image.alt | escape }}"
+                    width="1200"
+                    height="{{ 1200 | divided_by: image.aspect_ratio | ceil }}"
+                    loding="lazy"
+                    class="aspect-square object-contain object-center">
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </thumbails-gallery>
+      <mobile-gallery class="block lg:hidden">
+        <div class="mobile-gallery mobile-gallery-{{ section.id }} relative overflow-hidden">
+          <ul class="swiper-wrapper">
+            {% for image in product.images %}
+              <li class="swiper-slide">
+                <img
+                  src="{{ image.src | img_url: '1100x' }}"
+                  alt="{{ image.alt | escape }}"
+                  width="1100"
+                  height="{{ 1100 | divided_by: image.aspect_ratio | ceil }}"
+                  loding="lazy"
+                  class="aspect-square object-contain object-center">
+              </li>
+            {% endfor %}
+          </ul>
+          <div class="swiper-pagination bg-[#FF4100] py-2 px-4 rounded-[30px] text-white w-max text-xs right-1 left-[unset] font-semibold"></div>
+        </div>
+      </mobile-gallery>
+    </div>
+    <div class="col-span-1 lg:col-span-2 lg:pt-4">
+      <h1 class="uppercase font-black mb-1 leading-none text-[20px] lg:text-[35px]">{{ product.title | escape }}</h1>
+      {% if product.metafields.custom.caracter_sticas.value != blank %}
+        <h2 class="mb-4">{{ product.metafields.custom.caracter_sticas.value }}</h2>
+      {% endif %}
+
+      {% if product.available %}
+        <span class="block uppercase text-[13px] lg:text-base" >
+          Stock disponible: {{ product.selected_or_first_available_variant.inventory_quantity }} unidades.
+        </span>
+      {% endif %}
+      <div class="flex items-center gap-x-2 mb-4 leading-[1.1]">
+        {% if on_sale %}
+          <span class="sr-only">{{ 'products.product.price.sale_price' | t }}</span>
+          <span class="text-[#FF4100] uppercase font-black text-[24px] lg:text-[42px]">{{ product.price | money }}</span>
+          <span class="sr-only">{{ 'products.product.price.regular_price' | t }}</span>
+          <s class="font-light italic text-[10px] lg:text-[14px]">{{ product.compare_at_price_max | money }}</s>
+        {% else %}
+          <span class="sr-only">{{ 'products.product.price.regular_price' | t }}</span>
+          <span class="text-[#FF4100] uppercase font-black text-[24px] lg:text-[42px]">{{ product.price }}</span>
+        {% endif %}
+      </div>
+
+      <div x-data="{
+        minus(){
+          $refs.quantity_input.stepDown();
+        },
+        plus(){
+          $refs.quantity_input.stepUp();
+        },
+        addToCart(){
+          let formData = new FormData($refs.product_form);
+          fetch('/cart/add.js', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.json())
+          .then(response => {
+            $dispatch('update-cart');
+            $dispatch('toggle-cart');
+          })
+          .catch(error => console.error('Error', error))
+        }
+      }" class="mt-4 mb-8">
+        <form action="{{ routes.cart_add_url }}" id="Product-Form-{{ product.selected_or_first_available_variant.id }}" method="POST" x-ref="product_form">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        </form>
+
+        <div class="flex gap-x-4 items-center">
+          <div class="flex items-center group border-[0.5px] border-[#13203A] rounded-[32px]">
+            <button @click="minus" class="block px-4 h-[40px]">
+              {% render 'icon-minus', class: 'w-3' %}
+            </button>
+            <input type="number" name="quantity"  class="w-[50px] h-[40px] text-center border-l-[0.5px] text-xs md:text-sm border-r-[0.5px] border-[#13203A]" min="1" value="1" form="Product-Form-{{ product.selected_or_first_available_variant.id }}" x-ref="quantity_input">
+            <button @click="plus" class="block px-4 h-[40px]">
+              {% render 'icon-plus', class: 'w-3' %}
+            </button>
+          </div>
+          <button type="button" name="add" @click.prevent="addToCart" form="Product-Form-{{ product.selected_or_first_available_variant.id }}" class="btn-primary text-[13px] lg:text-base" {% unless product.available %}disabled{% endunless %}> 
+            {% unless product.available %}
+              <span>Sin Stock</span>   
+            {% else %}
+              <span>Añadir al Carro</span>   
+            {% endunless %}
+          </button>
+        </div>
+      </div>
+
+
+      {% if product.description != blank %}
+      <h2 class="font-semibold text-[18px] uppercase">Descripción</h2>
+        <div class="prose">
+          {{ product.description }}
+        </div>
+      {% endif %}
+      <div>
+        <h2 class="font-semibold text-[18px] uppercase">
+          Especificaciones
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .thumbnail-{{ section.id }} .swiper-slide {
+    opacity: 0.5;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .thumbnail-{{ section.id }} .swiper-slide-active {
+    opacity: 1;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Main Product",
+    "settings": []
+  }
+{% endschema %}

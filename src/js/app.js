@@ -1,5 +1,5 @@
 import Alpine from 'alpinejs';
-import Swiper, {Navigation, Pagination} from 'swiper';
+import Swiper, {Navigation, Pagination, Controller} from 'swiper';
 
 window.Alpine = Alpine;
 Alpine.start();
@@ -174,7 +174,13 @@ class MarcasCarousel extends HTMLElement{
     if(this.carousel){
       this.swiper = new Swiper(this.carousel, {
         slidesPerView: 4,
-        spaceBetween: 16
+        spaceBetween: 16,
+        breakpoints: {
+          1024: {
+            slidesPerView: 6,
+            spaceBetween: 16,
+          }
+        }
       })
     }
   }
@@ -182,7 +188,63 @@ class MarcasCarousel extends HTMLElement{
 
 customElements.define('marcas-carousel', MarcasCarousel);
 
+class GalleryThumbnail extends HTMLElement{
+  constructor(){
+    super();
+    this.thumbnail = this.querySelector('.thumbnail');
+    this.gallery = this.querySelector('.gallery'); 
+    this.count = Number(this.gallery.dataset.count);
+    
+    this.thumbs = new Swiper(this.thumbnail, {
+      modules: [Controller],
+      direction:'vertical',
+      slidesPerView: 5,
+      spaceBetween: 10,
+      loop: true,
+      centeredSlides: true,
+      loopedSlides: this.count,
+      slideToClickedSlide: true,
+    })
 
+    this.gallery = new Swiper(this.gallery, {
+      modules: [Controller],
+      direction: 'horizontal',
+      slidesPerView: 1,
+      loop: true,
+      autoHeight: true,
+      centeredSlides: true,
+      loopedSlides: this.count,
+    })
+
+    this.gallery.controller.control = this.thumbs;
+    this.thumbs.controller.control = this.gallery;
+  }
+}
+
+customElements.define('thumbails-gallery', GalleryThumbnail)
+
+
+class MobileGallery extends HTMLElement{
+  constructor(){
+    super();
+    this.carousel = this.querySelector('.mobile-gallery');
+    this.pagination = this.querySelector('.swiper-pagination')
+
+    if(this.carousel){
+      this.swiper = new Swiper(this.carousel, {
+        modules:[Pagination],
+        slidesPerView: 1,
+        loop: true,
+        pagination: {
+          el: this.pagination,
+          type: 'fraction'
+        }
+      })
+    }
+  }
+}
+
+customElements.define('mobile-gallery', MobileGallery)
 // Auxiliar events
 
 window.addEventListener('DOMContentLoaded',() => {

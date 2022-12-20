@@ -16,6 +16,7 @@
   "license": "ISC",
   "devDependencies": {
     "@tailwindcss/line-clamp": "^0.4.2",
+    "@tailwindcss/typography": "^0.5.8",
     "alpinejs": "^3.10.5",
     "archiver": "^5.3.1",
     "laravel-mix": "^6.0.49",
