@@ -1,4 +1,4 @@
-# Mediahuella Shopify Theme Boiler Plate
+# Mediahuella Shopify Theme Boilerplate
 
 This boilerplate was created for create a shopify template from scratch, is based in shopify dawn theme and be cleaned for major productivity
 
